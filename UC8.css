@@ -1,0 +1,9 @@
+    body {
+    background-color: whitesmoke;
+}
+
+#banner {
+    height: 175px;
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 25px;
