@@ -1,6 +1,6 @@
 // This is the varaible that stores the score.
 // score[0] = wins, score[1] = ties, score[2] = losses
-var score = [0, 0, 0];
+var score = [0, 0, 0, 0, 0];
 // The variables store the current player's and computer's choices
 // 0 = Rock, 1 = Paper, 2 = Scissors
 var playerChoice;
@@ -70,10 +70,24 @@ function playGame() {
     }
 }
 
-function displayScoreBoard(winsId, lossesId, tiesId) {
+function displayScoreBoard(winsId, lossesId, tiesId, matcheswonId, matcheslostId) {
     document.getElementById(winsId).innerHTML = score[0];
     document.getElementById(lossesId).innerHTML = score[2];
     document.getElementById(tiesId).innerHTML = score[1];
+    document.getElementById(matcheslostId).innerHTML = score[4];
+    document.getElementById(matcheswonId).innerHTML = score[3];
+    if (score[0] > 1) {
+        score[3]++;
+        score[0] = 0;
+        score[1] = 0;
+        score[2] = 0;
+    }
+    else if (score[2] > 1) {
+        score[4]++;
+        score[0] = 0;
+        score[1] = 0;
+        score[2] = 0;
+    }
 }
 
 function updateScore(val) {
@@ -83,7 +97,7 @@ function updateScore(val) {
 
 function displayGameResult(resultId) {
     // Define an array of text labels for the choices 0, 1, 2;
-    var choices = ["Rock", "Paper", "Scissors","Lizard","Spock"];
+    var choices = ["Rock", "Paper", "Scissors","Lizards","Spock"];
     // Now play the game and store the result
     var result = playGame();
     // Create a message for the player
@@ -100,7 +114,7 @@ function displayGameResult(resultId) {
         // Display that it was a loss
         document.getElementById(resultId).innerHTML = message + "YOU LOSE! ";
         document.getElementById(resultId).className = "alert alert-danger";
-    }
+     }
     else {
         // Display that it was a tie
         updateScore(1);
